@@ -1,15 +1,29 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+package graph;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        WeightedGraph<String> graph = new WeightedGraph<>();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        Vertex<String> a = new Vertex<>("A");
+        Vertex<String> b = new Vertex<>("B");
+        Vertex<String> c = new Vertex<>("C");
+        Vertex<String> d = new Vertex<>("D");
+        Vertex<String> e = new Vertex<>("E");
+
+        graph.addEdge(a, b, 1);
+        graph.addEdge(a, c, 4);
+        graph.addEdge(b, c, 2);
+        graph.addEdge(b, d, 5);
+        graph.addEdge(c, e, 1);
+        graph.addEdge(d, e, 2);
+
+        System.out.println("=== Breadth-First Search (BFS) from A to E ===");
+        Search<String> bfs = new BreadthFirstSearch<>(graph, a);
+        System.out.println("Path from A to E: " + bfs.pathTo(e));
+
+        System.out.println("\n=== Dijkstra's Algorithm from A to E ===");
+        DijkstraSearch<String> dijkstra = new DijkstraSearch<>(graph, a);
+        System.out.println("Path from A to E: " + dijkstra.pathTo(e));
+        System.out.println("Total distance: " + dijkstra.distanceTo(e));
     }
 }

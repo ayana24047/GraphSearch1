@@ -13,7 +13,7 @@ public class WeightedGraph<V> {
         addVertex(source);
         addVertex(dest);
         map.get(source).add(new Edge<>(source, dest, weight));
-        source.addAdjacentVertex(dest, weight);  // для BFS и Dijkstra
+        source.addAdjacentVertex(dest, weight);
     }
 
     public List<Edge<V>> getEdges(Vertex<V> vertex) {
@@ -36,3 +36,5 @@ public class WeightedGraph<V> {
             }
             System.out.println();
         }
+    }
+}
